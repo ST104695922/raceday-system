@@ -1,0 +1,74 @@
+name: Validate Documentation Structure
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Check if docs folder exists
+      run: |
+        if [ -d "docs" ]; then
+          echo "docs folder exists"
+        else
+          echo "docs folder is missing"
+          exit 1
+        fi
+    
+    - name: Check if ERD.png or ERD.pdf exists
+      run: |
+        if [ -f "docs/ERD.png" ] || [ -f "docs/ERD.pdf" ]; then
+          echo "ERD diagram exists"
+        else
+          echo "ERD.png or ERD.pdf is missing"
+          exit 1
+        fi
+    
+    - name: Check if endpoint-plan.md or endpoint-plan.pdf exists
+      run: |
+        if [ -f "docs/endpoint-plan.md" ] || [ -f "docs/endpoint-plan.pdf" ]; then
+          echo "API Endpoint Plan exists"
+        else
+          echo "endpoint-plan.md or endpoint-plan.pdf is missing"
+          exit 1
+        fi
+    
+    - name: Check if database-schema.sql exists
+      run: |
+        if [ -f "docs/database-schema.sql" ]; then
+          echo "SQL script exists"
+        else
+          echo "database-schema.sql is missing"
+          exit 1
+        fi
+    
+    - name: Check if README.md exists
+      run: |
+        if [ -f "README.md" ]; then
+          echo "README.md exists"
+        else
+          echo "README.md is missing"
+          exit 1
+        fi
+    
+    - name: List repository structure
+      run: |
+        echo "Repository structure:"
+        ls -la
+        echo ""
+        echo "docs folder contents:"
+        ls -la docs/ || echo "docs folder not found"
+    
+    - name: Validation complete
+      run: |
+        echo "All required files are present"
+        echo "Repository structure is valid"
