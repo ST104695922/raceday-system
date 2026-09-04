@@ -1,7 +1,13 @@
 # raceday-system
 description 
 RaceDay is a race event management system that allows organizers to create events and participants to enrol in races. The system manages events, categories, enrolments, payments, and results.
-
+roles 
+- Creates, updates, and deletes events
+- Manages event categories
+- Views enrolments for their events
+- Captures race results
+- Manages payments
+- 
 section a
 business rules 
 RACEDAY BUSINESS RULES
