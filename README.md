@@ -57,3 +57,5 @@ RACEDAY BUSINESS RULES
    - Public: View only events, categories, results
    - Participant: Enrol, pay, view own enrolments
    - Organizer: Create events, manage categories, capture results
+  
+     
